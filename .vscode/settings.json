@@ -8,7 +8,6 @@
         "**/.hg": true,
         "**/CVS": true,
         "**/.DS_Store": true,
-        "**/__pycache__": true
     },
     "scm.diffDecorations": "none",
     "python.pythonPath": "env\\Scripts\\python.exe",
