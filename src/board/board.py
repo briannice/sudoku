@@ -5,6 +5,7 @@ from .line import Line
 
 pygame.init()
 
+
 class Board:
     def __init__(self, x, y, size):
         self.x = x
@@ -24,7 +25,8 @@ class Board:
             BW = 40
         LWB = 3
         LWS = 1
-        self.width = size * BW + (self.root + 1) * LWB + self.root * (self.root - 1) * LWS
+        self.width = size * BW + (self.root + 1) * \
+            LWB + self.root * (self.root - 1) * LWS
 
         self.lines = set()
 
@@ -38,21 +40,24 @@ class Board:
 
         # Thin lines
         for i in range(self.root * (self.root - 1)):
-            p1 = (i // (self.root - 1)) * (self.root * BW + (self.root - 1 ) * LWS + LWB)
+            p1 = (i // (self.root - 1)) * \
+                (self.root * BW + (self.root - 1) * LWS + LWB)
             p2 = LWB + BW + (i % (self.root - 1)) * (BW + LWS)
             # Horizontal
             self.lines.add(Line(0, p1 + p2, self.width, LWS, x, y))
             # Vertical
             self.lines.add(Line(p1 + p2, 0, LWS, self.width, x, y))
-        
+
         # Blocks
         self.blocks = []
         for row in range(size):
-            t1 = (row // self.root) * (self.root * BW + (self.root - 1 ) * LWS + LWB)
+            t1 = (row // self.root) * (self.root *
+                                       BW + (self.root - 1) * LWS + LWB)
             t2 = LWB + (row % self.root) * (BW + LWS)
             lst = []
             for col in range(size):
-                p1 = (col // self.root) * (self.root * BW + (self.root - 1 ) * LWS + LWB)
+                p1 = (col // self.root) * (self.root *
+                                           BW + (self.root - 1) * LWS + LWB)
                 p2 = LWB + (col % self.root) * (BW + LWS)
                 lst.append(Block(row, col, p1 + p2, t1 + t2, BW, x, y))
             self.blocks.append(lst)
@@ -109,7 +114,7 @@ class Board:
         block = self.solved_positions[-1]
         self.solved_positions.pop(-1)
         return block
-        
+
     def check_valid_position(self, pos, val):
         if val == 0:
             return True
@@ -153,7 +158,6 @@ class Board:
                 self.cur_block.value = 0
                 self.cur_block = self.get_previous_block()
                 self.cur_val = self.cur_block.value + 1
-
 
     def setup_solve(self):
         if self.sel_pos:

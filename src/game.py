@@ -2,6 +2,7 @@ import pygame
 
 from board import Board
 
+
 class Sudoku():
 
     def __init__(self):
@@ -12,7 +13,8 @@ class Sudoku():
     def play(self):
 
         pygame.init()
-        win = pygame.display.set_mode((self.board.width + 20, self.board.width + 20))
+        win = pygame.display.set_mode(
+            (self.board.width + 20, self.board.width + 20))
         clock = pygame.time.Clock()
         pygame.display.set_caption("SUDOKU SOLVER")
 
@@ -47,7 +49,7 @@ class Sudoku():
                             self.board.set_value_sel_block(8)
                         if event.key == pygame.K_KP9 or event.key == pygame.K_9:
                             self.board.set_value_sel_block(9)
-                    
+
                     if event.key == pygame.K_s:
                         self.board.solving = not self.board.solving
                         if self.board.solving:
@@ -67,6 +69,6 @@ class Sudoku():
             if self.board.solving:
                 self.board.solve()
 
-            win.fill((255,255,255))
+            win.fill((255, 255, 255))
             self.board.draw(win)
             pygame.display.update()

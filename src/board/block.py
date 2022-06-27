@@ -2,6 +2,7 @@ import pygame
 
 pygame.init()
 
+
 class Block:
     def __init__(self, row, col, x, y, width, dx, dy):
         self.row = row
@@ -19,7 +20,7 @@ class Block:
         self.rect = (self.x, self.y, width, width)
         self.sel_color = (255, 102, 102)
         self.color = (163, 163, 194)
-        self.txtcolor = (0,0,0)
+        self.txtcolor = (0, 0, 0)
         self.selected = False
 
     def set_color(self, newcolor):
@@ -42,9 +43,10 @@ class Block:
             pygame.draw.rect(win, self.sel_color, self.rect)
         else:
             pygame.draw.rect(win, self.color, self.rect)
-        
+
         if self.value != 0:
             fnt = pygame.font.SysFont("arial", self.fontsize)
             txt = fnt.render(str(self.value), True, self.txtcolor)
-            rect = txt.get_rect(center=(self.x + self.width // 2, self.y + self.width // 2))
+            rect = txt.get_rect(
+                center=(self.x + self.width // 2, self.y + self.width // 2))
             win.blit(txt, rect)
